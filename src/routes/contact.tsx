@@ -24,7 +24,7 @@ function Contact() {
   const [errs, setErrs] = useState<Record<string, string>>({});
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const f = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
+    const f = Object.fromEntries(new FormData(e.currentTarget)) as { name: string; reach: string; subject: string; message: string };
     const n: Record<string, string> = {};
     if (!f.name?.trim()) n.name = "Please enter your name.";
     if (!f.reach?.trim() || !(/^\S+@\S+\.\S+$/.test(f.reach) || /^[+\d\s-]{10,}$/.test(f.reach))) n.reach = "Enter a valid phone number or email.";

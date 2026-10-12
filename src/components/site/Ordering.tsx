@@ -48,7 +48,7 @@ export function GroupOrderForm() {
   const [errs, setErrs] = useState<Errs>({});
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const f = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
+    const f = Object.fromEntries(new FormData(e.currentTarget)) as { name: string; phone: string; date: string; time: string; people: string; snacks: string; notes: string };
     const n: Errs = {};
     if (!f.name?.trim()) n.name = "Please enter your name.";
     if (!isValidIndianPhone(f.phone || "")) n.phone = "Enter a valid 10-digit Indian mobile number.";
