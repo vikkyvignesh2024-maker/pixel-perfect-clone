@@ -5,25 +5,27 @@ import chai from "@/assets/chai.jpg";
 import gobi from "@/assets/gobi.jpg";
 import maggi from "@/assets/maggi.jpg";
 import corn from "@/assets/corn.jpg";
-import soup from "@/assets/soup.jpg";
+import soupAsset from "@/assets/mudavattu-soup.webp.asset.json";
+import appalam from "@/assets/delhi-appalam.jpg";
+const soup = soupAsset.url;
 import omelette from "@/assets/omelette.jpg";
-import kilangu from "@/assets/kilangu.jpg";
+
 import { Page, Faq, faqLd, SectionTitle } from "@/components/site/Shell";
-import { KilanguOrder, GroupOrders } from "@/components/site/Ordering";
+import { KilanguOrder, GroupOrders, StayEnquiries } from "@/components/site/Ordering";
 import { BIZ, breadcrumbLd, localBusinessLd } from "@/lib/site";
 import { seo } from "@/lib/seo";
 
 const FAQ: [string, string][] = [
   ["Where is MP Snacks & Bites located?", `We're at ${BIZ.address}. Tap "Get Directions" for Google Maps.`],
-  ["What snacks can I explore on the website?", "Bajji varieties, cauliflower chilli, plain and egg Maggi, bread omelette, sweet corn, onion bakkoda, chai and coffee."],
+  ["What snacks can I explore on the website?", "Bajji varieties, cauliflower chilli, plain and egg Maggi, bread omelette, sweet corn, onion bakkoda, Delhi Appalam, chai and coffee."],
   ["What is Mudavattu Kilangu?", "A traditional local ingredient associated with the flavours of the Yercaud region, which you can take home and prepare."],
-  ["How much does Mudavattu Kilangu cost?", "₹150 per kg. Please confirm availability with the shop before ordering."],
+  ["How much does Mudavattu Kilangu cost?", "Ask the shop for current soup and raw Kilangu prices. Soup is served as one cup."],
   ["Can families or groups place orders?", "Yes — group and family orders are welcome for 10 people or more. Send an enquiry and the shop will confirm."],
   ["How can I contact the shop?", `Call or WhatsApp ${BIZ.phone}.`],
 ];
 
 export const Route = createFileRoute("/")({
-  head: () => seo("MP Snacks & Bites Yercaud — Hot Snacks & Chai", "Snacks shop in Yercaud serving hot bajji, cauliflower chilli, chai and Mudavattu Kilangu at ₹150/kg. Group orders welcome.", "/", [localBusinessLd, breadcrumbLd([{ name: "Home", path: "/" }]), faqLd(FAQ)]),
+  head: () => seo("MP Snacks & Bites Yercaud — Hot Snacks & Chai", "Snacks shop in Yercaud serving hot bajji, cauliflower chilli, chai Delhi Appalam and Mudavattu Kilangu soup. Group orders welcome.", "/", [localBusinessLd, breadcrumbLd([{ name: "Home", path: "/" }]), faqLd(FAQ)]),
   component: Home,
 });
 
@@ -35,7 +37,7 @@ const highlights = [
 ] as const;
 
 const popular = [
-  ["Bajji Varieties", chai], ["Cauliflower Chilli", gobi], ["Egg Maggi", maggi], ["Sweet Corn", corn],
+  ["Bajji Varieties", chai], ["Cauliflower Chilli", gobi], ["Egg Maggi", maggi], ["Delhi Appalam", appalam],
 ] as const;
 
 function Home() {
@@ -50,7 +52,7 @@ function Home() {
             <p className="mt-6 max-w-lg text-lg text-muted-foreground">Freshly prepared snacks, comforting chai, and local flavours made for your Yercaud moments.</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/products" className="btn btn-primary">Explore Our Menu</Link>
-              <Link to="/products" hash="kilangu" className="btn btn-outline text-forest">Order Mudavattu Kilangu</Link>
+              <Link to="/products" hash="kilangu" className="btn btn-outline text-forest">Try Mudavattu Kilangu Soup</Link>
             </div>
             <p className="mt-8 text-sm font-medium text-brown/80">Tea-time favourites • Freshly prepared snacks • Group orders welcome</p>
           </div>
@@ -59,7 +61,7 @@ function Home() {
               <img src={hero} alt="Chai, bajji, onion bakkoda, cauliflower chilli and sweet corn overlooking the Yercaud hills" width={1280} height={1024} className="hero-drift aspect-[5/4] w-full object-cover" />
             </div>
             <div className="absolute -bottom-5 -left-3 flex items-center gap-3 rounded-2xl bg-card px-5 py-3 shadow-soft md:-left-8">
-              <Leaf className="h-6 w-6 text-forest" /><div><p className="text-xs text-muted-foreground">Mudavattu Kilangu</p><p className="font-bold text-primary">₹150 / kg</p></div>
+              <Leaf className="h-6 w-6 text-forest" /><div><p className="text-xs text-muted-foreground">Mudavattu Kilangu Soup</p><p className="font-bold text-primary">One cup of comfort</p></div>
             </div>
           </div>
         </div>
@@ -111,13 +113,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Smart CTA */}
-      <section className="container-x py-20">
-        <div className="reveal flex flex-col items-center justify-between gap-6 rounded-3xl bg-primary p-10 text-primary-foreground md:flex-row">
-          <div><h2 className="text-3xl font-bold">Take Yercaud home with you</h2><p className="mt-2 opacity-90">Pick your quantity of Mudavattu Kilangu and send your order on WhatsApp.</p></div>
-          <Link to="/products" hash="kilangu" className="btn bg-forest-deep text-cream hover:-translate-y-0.5">Start an order</Link>
-        </div>
-      </section>
+      <StayEnquiries />
 
       <GroupOrders />
 
@@ -137,7 +133,7 @@ function Home() {
       <section className="container-x py-20">
         <SectionTitle eyebrow="Gallery" title="A Taste of the Hills" />
         <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
-          {[[hero, "Snack spread with hill view"], [soup, "Mudavattu Kilangu soup"], [kilangu, "Mudavattu Kilangu"], [omelette, "Bread omelette"], [gobi, "Cauliflower chilli"], [corn, "Sweet corn"], [maggi, "Egg Maggi"], [chai, "Chai and bajji"]].map(([s, a], i) => (
+          {[[hero, "Snack spread with hill view"], [soup, "Mudavattu Kilangu soup"], [appalam, "Delhi Appalam"], [omelette, "Bread omelette"], [gobi, "Cauliflower chilli"], [corn, "Sweet corn"], [maggi, "Egg Maggi"], [chai, "Chai and bajji"]].map(([s, a], i) => (
             <img key={a} src={s} alt={a} loading="lazy" width={600} height={600} className={`reveal h-full w-full rounded-2xl object-cover ${i === 0 ? "md:col-span-2 md:row-span-2" : "aspect-square"}`} />
           ))}
         </div>

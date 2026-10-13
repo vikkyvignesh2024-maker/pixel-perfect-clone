@@ -4,13 +4,14 @@ import { Phone, MapPin, MessageCircle } from "lucide-react";
 import hero from "@/assets/hero.jpg";
 import { Page, PageHero, Faq, faqLd } from "@/components/site/Shell";
 import { BIZ, breadcrumbLd, localBusinessLd, waLink } from "@/lib/site";
+import { StayEnquiries } from "@/components/site/Ordering";
 import { seo } from "@/lib/seo";
 
 const FAQ: [string, string][] = [
   ["Where is the shop located?", BIZ.address],
   ["What is the contact phone number?", BIZ.phone],
   ["How do I open the location in Google Maps?", "Tap 'Get Directions' — it opens our location in Google Maps."],
-  ["How can I enquire about Mudavattu Kilangu?", "Use the order tool on the Products page, or WhatsApp us."],
+  ["How can I enquire about Mudavattu Kilangu?", "Use the soup and raw Kilangu enquiry links on the Menu page, or WhatsApp us."],
   ["How do I book for a group of 10 or more?", "Use the group enquiry form on the home page. The shop will confirm your booking."],
   ["How can I ask about current menu availability?", "Call or WhatsApp us — we'll tell you what's fresh today."],
 ];
@@ -62,6 +63,7 @@ function Contact() {
           <p className="text-center text-sm">Group of 10+? <Link to="/" hash="group" className="font-semibold text-primary">Book a group visit</Link> · <Link to="/products" className="font-semibold text-primary">Menu</Link> · <Link to="/about" className="font-semibold text-primary">About</Link></p>
         </form>
       </section>
+      <StayEnquiries />
       <Faq items={FAQ} />
     </Page>
   );

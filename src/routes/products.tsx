@@ -2,30 +2,24 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { MessageCircle } from "lucide-react";
 import hero from "@/assets/hero.jpg";
-import soup from "@/assets/soup.jpg";
+import { Button } from "@/components/ui/button";
 import { Page, PageHero, Faq, faqLd } from "@/components/site/Shell";
-import { KilanguOrder } from "@/components/site/Ordering";
+import { KilanguOrder, StayEnquiries } from "@/components/site/Ordering";
 import { CATEGORIES, MENU } from "@/lib/menu";
 import { BIZ, breadcrumbLd, waLink } from "@/lib/site";
 import { seo } from "@/lib/seo";
 
 const FAQ: [string, string][] = [
-  ["What snack items are featured?", "Bajji varieties, cauliflower chilli, Maggi, bread omelette, sweet corn, onion bakkoda, chai, coffee and Mudavattu Kilangu."],
+  ["What snack items are featured?", "Bajji varieties, cauliflower chilli, Maggi, bread omelette, sweet corn, onion bakkoda, chai, coffee, Delhi Appalam and Mudavattu Kilangu soup."],
   ["Is cauliflower chilli listed on the menu?", "Yes, cauliflower chilli is one of our chilli snacks."],
   ["Are plain and egg Maggi available?", "Both are on the menu. Please check current availability with the shop."],
-  ["How can I check item prices?", `Mudavattu Kilangu is ₹150 per kg. For other items, contact us on ${BIZ.phone}.`],
-  ["Can I order Mudavattu Kilangu?", "Yes — choose your quantity above and send your order enquiry on WhatsApp."],
+  ["How can I check item prices?", `Contact us on ${BIZ.phone} for current prices. Soup is served as one cup.`],
+  ["Can I order Mudavattu Kilangu?", "Yes — enquire about soup or raw Mudavattu Kilangu on WhatsApp for current details."],
   ["How can I ask about current availability?", "Tap any 'Enquire on WhatsApp' button or call the shop."],
 ];
 
-const productLd = {
-  "@context": "https://schema.org", "@type": "Product", name: "Mudavattu Kilangu",
-  description: "A traditional local ingredient associated with the Yercaud region.",
-  offers: { "@type": "Offer", price: "150", priceCurrency: "INR", unitText: "kg" },
-};
-
 export const Route = createFileRoute("/products")({
-  head: () => seo("Menu — Bajji, Chai & Mudavattu Kilangu | MP Snacks & Bites", "Explore the snack menu: bajji, cauliflower chilli, Maggi, sweet corn, chai, and Mudavattu Kilangu at ₹150 per kg in Yercaud.", "/products", [productLd, breadcrumbLd([{ name: "Home", path: "/" }, { name: "Products", path: "/products" }]), faqLd(FAQ)]),
+  head: () => seo("Menu — Bajji, Chai & Mudavattu Kilangu | MP Snacks & Bites", "Explore the snack menu: bajji, cauliflower chilli, Maggi, sweet corn, chai, Delhi Appalam and one-cup Mudavattu Kilangu soup in Yercaud.", "/products", [breadcrumbLd([{ name: "Home", path: "/" }, { name: "Products", path: "/products" }]), faqLd(FAQ)]),
   component: Products,
 });
 
@@ -38,8 +32,8 @@ function Products() {
       <section className="container-x py-16">
         <div className="flex flex-wrap justify-center gap-2" role="group" aria-label="Filter menu">
           {["All", ...CATEGORIES].map((c) => (
-            <button key={c} onClick={() => setCat(c)} aria-pressed={cat === c}
-              className={`rounded-full border px-4 py-2 text-sm font-medium transition ${cat === c ? "border-forest bg-forest text-cream" : "bg-card text-forest hover:border-primary"}`}>{c}</button>
+            <Button variant="outline" key={c} onClick={() => setCat(c)} aria-pressed={cat === c}
+              className={`rounded-full border px-4 py-2 text-sm font-medium transition ${cat === c ? "border-forest bg-forest text-cream" : "bg-card text-forest hover:border-primary"}`}>{c}</Button>
           ))}
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -60,19 +54,7 @@ function Products() {
         </div>
       </section>
       <KilanguOrder />
-      <section className="container-x grid items-center gap-12 py-20 lg:grid-cols-2">
-        <img src={soup} alt="Bowl of Mudavattu Kilangu soup with curry leaves" width={912} height={736} loading="lazy" className="reveal w-full rounded-[2rem] object-cover shadow-lift" />
-        <div className="reveal">
-          <p className="eyebrow">Mudavattu Kilangu soup</p>
-          <h2 className="mt-2 text-4xl font-bold text-forest">A Traditional Taste to Warm Your Day</h2>
-          <p className="mt-5 text-muted-foreground">Mudavattu Kilangu soup is a distinctive local food experience — a warming, flavourful bowl that feels just right in cool hill-station weather. It's a lovely way to explore traditional ingredients and the recipes built around them.</p>
-          <p className="mt-4 rounded-xl bg-muted p-4 text-xs text-muted-foreground">Individual nutritional needs vary. Traditional foods are enjoyed for their taste and heritage and are not a replacement for medical treatment.</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href={waLink("Hello MP Snacks & Bites, is Mudavattu Kilangu soup available today?")} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Ask about availability</a>
-            <Link to="/flowers" className="btn btn-outline text-forest">See our Flowers page</Link>
-          </div>
-        </div>
-      </section>
+      <StayEnquiries />
       <Faq items={FAQ} />
       <section className="container-x pb-20 text-center"><Link to="/contact" className="btn btn-primary">Questions? Contact us</Link></section>
     </Page>

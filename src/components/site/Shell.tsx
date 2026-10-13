@@ -19,15 +19,7 @@ export function Header() {
         <nav className="hidden items-center gap-7 md:flex" aria-label="Main">
           <Link to="/" className={nav} activeProps={active} activeOptions={{ exact: true }}>Home</Link>
           <Link to="/about" className={nav} activeProps={active}>About Us</Link>
-          <div className="group relative">
-            <Link to="/products" className={`${nav} inline-flex items-center gap-1`} activeProps={active}>Products <ChevronDown className="h-4 w-4" /></Link>
-            <div className="invisible absolute left-0 top-full w-44 pt-3 opacity-0 transition group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-              <div className="rounded-xl border bg-card p-2 shadow-soft">
-                <Link to="/products" className="block rounded-lg px-3 py-2 text-sm hover:bg-muted">All Products</Link>
-                <Link to="/flowers" className="block rounded-lg px-3 py-2 text-sm hover:bg-muted">Flowers</Link>
-              </div>
-            </div>
-          </div>
+          <Link to="/products" className={nav} activeProps={active}>Menu</Link>
           <Link to="/contact" className={nav} activeProps={active}>Contact Us</Link>
           <Link to="/products" hash="kilangu" className="btn btn-primary py-2.5">Order Now</Link>
         </nav>
@@ -38,7 +30,7 @@ export function Header() {
       {open && (
         <nav className="border-t bg-cream md:hidden animate-in slide-in-from-top-2" aria-label="Mobile">
           <div className="container-x flex flex-col gap-1 py-4" onClick={() => setOpen(false)}>
-            {([["/", "Home"], ["/about", "About Us"], ["/products", "All Products"], ["/flowers", "Flowers"], ["/contact", "Contact Us"]] as const).map(([to, l]) => (
+            {([["/", "Home"], ["/about", "About Us"], ["/products", "All Products"], ["/contact", "Contact Us"]] as const).map(([to, l]) => (
               <Link key={to} to={to} className="rounded-lg px-3 py-3 font-medium text-forest hover:bg-muted" activeProps={active} activeOptions={{ exact: true }}>{l}</Link>
             ))}
             <Link to="/products" hash="kilangu" className="btn btn-primary mt-2">Order Now</Link>
@@ -64,7 +56,6 @@ export function Footer() {
             <li><Link to="/" className="hover:text-primary">Home</Link></li>
             <li><Link to="/about" className="hover:text-primary">About Us</Link></li>
             <li><Link to="/products" className="hover:text-primary">Products</Link></li>
-            <li><Link to="/flowers" className="hover:text-primary">Flowers</Link></li>
             <li><Link to="/contact" className="hover:text-primary">Contact Us</Link></li>
           </ul>
         </div>
