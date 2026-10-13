@@ -27,10 +27,10 @@ function Contact() {
     e.preventDefault();
     const f = Object.fromEntries(new FormData(e.currentTarget)) as { name: string; reach: string; subject: string; message: string };
     const n: Record<string, string> = {};
-    if (!f.name?.trim()) n.name = "Please enter your name.";
-    if (!f.reach?.trim() || !(/^\S+@\S+\.\S+$/.test(f.reach) || /^[+\d\s-]{10,}$/.test(f.reach))) n.reach = "Enter a valid phone number or email.";
-    if (!f.subject?.trim()) n.subject = "Please add a subject.";
-    if (!f.message?.trim()) n.message = "Please write a message.";
+    if (!f.name?.trim()) n["name"] = "Please enter your name.";
+    if (!f.reach?.trim() || !(/^\S+@\S+\.\S+$/.test(f.reach) || /^[+\d\s-]{10,}$/.test(f.reach))) n["reach"] = "Enter a valid phone number or email.";
+    if (!f.subject?.trim()) n["subject"] = "Please add a subject.";
+    if (!f.message?.trim()) n["message"] = "Please write a message.";
     setErrs(n);
     if (Object.keys(n).length) return;
     window.open(waLink(`Hello MP Snacks & Bites,\nName: ${f.name}\nContact: ${f.reach}\nSubject: ${f.subject}\n${f.message}`), "_blank", "noopener,noreferrer");

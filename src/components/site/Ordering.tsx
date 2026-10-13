@@ -57,11 +57,11 @@ export function GroupOrderForm() {
     e.preventDefault();
     const f = Object.fromEntries(new FormData(e.currentTarget)) as { name: string; phone: string; date: string; time: string; people: string; snacks: string; notes: string };
     const n: Errs = {};
-    if (!f.name?.trim()) n.name = "Please enter your name.";
-    if (!isValidIndianPhone(f.phone || "")) n.phone = "Enter a valid 10-digit Indian mobile number.";
-    if (!f.date) n.date = "Choose your visit date.";
-    if (!f.time) n.time = "Choose an estimated arrival time.";
-    if (!(Number(f.people) >= BIZ.groupMin)) n.people = `Group orders need at least ${BIZ.groupMin} people.`;
+    if (!f.name?.trim()) n["name"] = "Please enter your name.";
+    if (!isValidIndianPhone(f.phone || "")) n["phone"] = "Enter a valid 10-digit Indian mobile number.";
+    if (!f.date) n["date"] = "Choose your visit date.";
+    if (!f.time) n["time"] = "Choose an estimated arrival time.";
+    if (!(Number(f.people) >= BIZ.groupMin)) n["people"] = `Group orders need at least ${BIZ.groupMin} people.`;
     setErrs(n);
     if (Object.keys(n).length) return;
     const msg = `Hello MP Snacks & Bites, I'd like to enquire about a group order.\nName: ${f.name}\nPhone: ${f.phone}\nDate: ${f.date}\nArrival: ${f.time}\nPeople: ${f.people}\nPreferred snacks: ${f.snacks || "-"}\nRequests: ${f.notes || "-"}\nPlease confirm.`;
