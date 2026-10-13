@@ -4,16 +4,12 @@ export const BIZ = {
   phone: "9361072656",
   wa: "919361072656",
   maps: "https://maps.app.goo.gl/KPtnh7goguHw2FhY7",
-  kilanguPrice: 150,
+  instagram: "https://www.instagram.com/mp.snacks_2025/",
+  soupServingCups: 1,
   groupMin: 10,
 };
 
 export const waLink = (msg: string) => `https://wa.me/${BIZ.wa}?text=${encodeURIComponent(msg)}`;
-
-export const kilanguTotal = (kg: number) => kg * BIZ.kilanguPrice;
-
-export const kilanguMessage = (kg: number) =>
-  `Hello MP Snacks & Bites, I would like to order Mudavattu Kilangu. Quantity: ${kg} kg. Total: ₹${kilanguTotal(kg)}. Please confirm availability, delivery options, and payment details.`;
 
 export const isValidIndianPhone = (p: string) => /^(\+?91[\s-]?)?[6-9]\d{9}$/.test(p.replace(/\s/g, ""));
 

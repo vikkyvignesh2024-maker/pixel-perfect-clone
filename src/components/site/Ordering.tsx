@@ -1,42 +1,49 @@
 import { useState, type FormEvent } from "react";
-import { Minus, Plus, MessageCircle, Info } from "lucide-react";
-import kilangu from "@/assets/kilangu.jpg";
-import { BIZ, kilanguMessage, kilanguTotal, waLink, isValidIndianPhone } from "@/lib/site";
+import { MessageCircle, Instagram, Coffee } from "lucide-react";
+import soup from "@/assets/mudavattu-soup.webp.asset.json";
+import { Button } from "@/components/ui/button";
+import { BIZ, waLink, isValidIndianPhone } from "@/lib/site";
 
 export function KilanguOrder() {
-  const [kg, setKg] = useState(1);
   return (
     <section id="kilangu" className="scroll-mt-24 bg-forest text-cream">
       <div className="container-x grid items-center gap-12 py-20 lg:grid-cols-2">
-        <div className="reveal overflow-hidden rounded-3xl shadow-lift">
-          <img src={kilangu} alt="Fresh Mudavattu Kilangu tubers on a banana leaf" width={1024} height={1024} loading="lazy" className="aspect-square w-full object-cover" />
+        <div className="reveal overflow-hidden rounded-2xl shadow-lift">
+          <img src={soup.url} alt="Mudavattu Kilangu soup alongside the raw tubers" width={800} height={800} loading="lazy" className="aspect-square w-full object-contain" />
         </div>
         <div className="reveal">
-          <p className="eyebrow">Signature speciality</p>
-          <h2 className="mt-2 text-4xl font-bold md:text-5xl">Bring Home a Taste of Yercaud</h2>
-          <p className="mt-5 text-cream/85">Discover Mudavattu Kilangu, a traditional local ingredient associated with the flavours of the Yercaud region. Bring home this distinctive ingredient and explore traditional ways of preparing it.</p>
-          <p className="mt-6 font-display text-5xl font-bold text-primary">₹150 <span className="font-sans text-lg font-medium text-cream/80">per kg</span></p>
-          <div className="mt-8 rounded-2xl bg-forest-deep/60 p-6">
-            <div className="flex flex-wrap items-center justify-between gap-6">
-              <div>
-                <p className="text-sm text-cream/70">Quantity (kg)</p>
-                <div className="mt-2 flex items-center gap-3">
-                  <button onClick={() => setKg(Math.max(1, kg - 1))} className="grid h-11 w-11 place-items-center rounded-full border border-cream/30 hover:bg-cream/10" aria-label="Decrease quantity"><Minus className="h-4 w-4" /></button>
-                  <span className="w-12 text-center text-2xl font-bold" aria-live="polite">{kg}</span>
-                  <button onClick={() => setKg(Math.min(50, kg + 1))} className="grid h-11 w-11 place-items-center rounded-full border border-cream/30 hover:bg-cream/10" aria-label="Increase quantity"><Plus className="h-4 w-4" /></button>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="text-sm text-cream/70">Subtotal</p>
-                <p key={kg} className="mt-1 text-3xl font-bold text-gold animate-in fade-in zoom-in-95">₹{kilanguTotal(kg)}</p>
-              </div>
-            </div>
-            <a href={waLink(kilanguMessage(kg))} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-6 w-full">
-              <MessageCircle className="h-5 w-5" /> Order via WhatsApp
-            </a>
-            <p className="mt-4 flex gap-2 text-xs text-cream/70"><Info className="h-4 w-4 shrink-0" />This is an order enquiry. The shop will confirm availability, delivery or pickup, and payment before your order is final.</p>
+          <p className="eyebrow">Our local speciality</p>
+          <h2 className="mt-2 text-4xl font-bold md:text-5xl">Mudavattu Kilangu Soup</h2>
+          <p className="mt-5 text-cream/85">Enjoy Mudavattu Kilangu in a warm, savoury soup — a comforting taste of the hills for your Yercaud snack break.</p>
+          <p className="mt-6 flex items-center gap-2 text-xl font-semibold text-gold"><Coffee className="h-5 w-5" />Serving: {BIZ.soupServingCups} cup</p>
+          <ul className="mt-6 space-y-3 text-cream/85">
+            <li>A warming choice for cool hill-station weather.</li>
+            <li>A savoury way to enjoy a traditional local ingredient.</li>
+            <li>A comforting pause alongside your tea-time favourites.</li>
+          </ul>
+          <p className="mt-5 text-xs text-cream/70">Enjoyed for its flavour and tradition. No medical or nutritional benefits are claimed; ask us about ingredients before ordering if you have allergies or dietary needs.</p>
+          <Button asChild size="lg" className="mt-8 h-auto whitespace-normal py-3 text-center"><a href={waLink("Hello MP Snacks & Bites, I'd like to enquire about one cup of Mudavattu Kilangu soup. Please confirm the price, ingredients and availability.")} target="_blank" rel="noopener noreferrer"><MessageCircle />Enquire about soup</a></Button>
+          <div className="mt-8 border-t border-cream/20 pt-6">
+            <h3 className="text-xl font-bold text-gold">Raw Mudavattu Kilangu</h3>
+            <p className="mt-2 text-sm text-cream/80">Want to prepare it at home? Contact us for updated product details, current pricing and availability.</p>
+            <a href={waLink("Hello MP Snacks & Bites, please share updated details, current price and availability for raw Mudavattu Kilangu.")} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-2 font-semibold text-gold"><MessageCircle className="h-4 w-4" />Ask about raw Kilangu</a>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+export function StayEnquiries() {
+  return (
+    <section className="bg-muted">
+      <div className="container-x grid items-center gap-8 py-16 md:grid-cols-[1fr_auto]">
+        <div className="reveal">
+          <p className="eyebrow">Stay in Yercaud</p>
+          <h2 className="mt-2 text-3xl font-bold text-forest md:text-4xl">Rooms &amp; Cottages</h2>
+          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">Looking for a room or cottage to stay in Yercaud? DM us on Instagram for more details and bookings!</p>
+        </div>
+        <Button asChild size="lg" className="h-auto whitespace-normal py-4 text-center"><a href={BIZ.instagram} target="_blank" rel="noopener noreferrer"><Instagram />DM @mp.snacks_2025</a></Button>
       </div>
     </section>
   );
@@ -50,11 +57,11 @@ export function GroupOrderForm() {
     e.preventDefault();
     const f = Object.fromEntries(new FormData(e.currentTarget)) as { name: string; phone: string; date: string; time: string; people: string; snacks: string; notes: string };
     const n: Errs = {};
-    if (!f.name?.trim()) n.name = "Please enter your name.";
-    if (!isValidIndianPhone(f.phone || "")) n.phone = "Enter a valid 10-digit Indian mobile number.";
-    if (!f.date) n.date = "Choose your visit date.";
-    if (!f.time) n.time = "Choose an estimated arrival time.";
-    if (!(Number(f.people) >= BIZ.groupMin)) n.people = `Group orders need at least ${BIZ.groupMin} people.`;
+    if (!f.name?.trim()) n["name"] = "Please enter your name.";
+    if (!isValidIndianPhone(f.phone || "")) n["phone"] = "Enter a valid 10-digit Indian mobile number.";
+    if (!f.date) n["date"] = "Choose your visit date.";
+    if (!f.time) n["time"] = "Choose an estimated arrival time.";
+    if (!(Number(f.people) >= BIZ.groupMin)) n["people"] = `Group orders need at least ${BIZ.groupMin} people.`;
     setErrs(n);
     if (Object.keys(n).length) return;
     const msg = `Hello MP Snacks & Bites, I'd like to enquire about a group order.\nName: ${f.name}\nPhone: ${f.phone}\nDate: ${f.date}\nArrival: ${f.time}\nPeople: ${f.people}\nPreferred snacks: ${f.snacks || "-"}\nRequests: ${f.notes || "-"}\nPlease confirm.`;

@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep shared soup and accommodation sections in site components so home, menu, and contact remain consistent.
+- Keep confirmed serving details and enquiry destinations in shared business data so presentation and tests use the same rules.
